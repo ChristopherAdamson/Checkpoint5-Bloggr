@@ -61,6 +61,9 @@ export default new Vuex.Store({
         console.log(res);
         commit("setNewComment", res.data)
       } catch (error) { console.error(error) }
-    }
+    },
+    async createBlog({ commit, dispatch }) {
+
+    },
   },
 });
