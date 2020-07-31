@@ -20,6 +20,30 @@ const routes = [
     component: Profile,
     beforeEnter: authGuard,
   },
+  {
+    path: '/cooking',
+    name: 'Cooking',
+    // @ts-ignore
+    component: () => import(/* webpackChunkName: "Cooking" */ '../pages/Cooking.vue')
+  },
+  {
+    path: '/gaming',
+    name: 'Gaming',
+    // @ts-ignore
+    component: () => import(/* webpackChunkName: "Gaming" */ '../pages/Gaming.vue')
+  },
+  {
+    path: '/books',
+    name: 'Books',
+    // @ts-ignore
+    component: () => import(/* webpackChunkName: "Books" */ '../pages/Books.vue')
+  },
+  {
+    path: '/blog/:id',
+    name: 'Blog',
+    // @ts-ignore
+    component: () => import(/* webpackChunkName: "Blog" */ '../pages/blogDetails.vue')
+  },
 ];
 
 const router = new VueRouter({

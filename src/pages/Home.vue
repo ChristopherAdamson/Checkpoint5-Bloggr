@@ -1,25 +1,29 @@
 <template>
-  <div class="home row">
-    Welcome to Bloggr!
-    <div class="col-12">
-      <router-link :to="{ name: 'Books' }" class="nav-link">Books</router-link>
-      <router-link :to="{ name: 'Cooking' }" class="nav-link">Cooking</router-link>
-      <router-link :to="{ name: 'Gaming' }" class="nav-link">Gaming</router-link>
-    </div>
+  <div class="home row justify-content-center">
+    <Blogs v-for="blog in blogs" :blogData="blog" :key="blog.id" />
   </div>
 </template>
 
 
 <script>
+import Blogs from "../components/blog";
 export default {
   name: "home",
   data() {
     return {};
   },
-  mounted() {},
-  computed: {},
+  mounted() {
+    this.$store.dispatch("getAllBlogs");
+  },
+  computed: {
+    blogs() {
+      return this.$store.state.blogs;
+    },
+  },
   methods: {},
-  components: {},
+  components: {
+    Blogs,
+  },
 };
 </script>
 
