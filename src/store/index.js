@@ -24,6 +24,12 @@ export default new Vuex.Store({
     },
     setNewComment(state, commentData) {
       state.blogDetails.comments.unshift(commentData)
+    },
+    setNewBlog(state, blogData) {
+      state.blogs.unshift(blogData)
+    },
+    setYourBlogs(state, blogData) {
+      state.yourBlogs = blogData
     }
   },
   actions: {
@@ -62,8 +68,19 @@ export default new Vuex.Store({
         commit("setNewComment", res.data)
       } catch (error) { console.error(error) }
     },
-    async createBlog({ commit, dispatch }) {
-
+    async addBlog({ commit, dispatch }, payload) {
+      try {
+        let res = await api.post("blogs/", payload)
+        console.log(res);
+        commit("setNewBlog", res.data)
+      } catch (error) { console.error(error) }
     },
+    async getYourBlogs({ commit, dispatch }) {
+      try {
+        let res = await api.get("profile/blogs")
+        console.log(res.data);
+        commit("setYourBlogs", res.data)
+      } catch (error) { console.error(error) }
+    }
   },
 });

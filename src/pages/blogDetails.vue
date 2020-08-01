@@ -2,7 +2,16 @@
   <div class="activeBlog">
     <div class="row justify-content-center">
       <div class="col-8">
-        <img class="img-fluid icon float-right mt-2" :src="blogDetails.blog.creator.picture" />
+        <img
+          v-if="blogDetails.blog.creator"
+          class="img-fluid size-img icon float-right mt-2"
+          :src="blogDetails.blog.creator.picture"
+        />
+        <img
+          v-else-if="!blogDetails.blog.creator"
+          class="img-fluid size-img icon float-right mt-2"
+          src="https://cdn2.iconfinder.com/data/icons/ui-1/60/05-512.png"
+        />
         <h1>{{blogDetails.blog.title}}</h1>
         <h5>By: {{blogDetails.blog.creatorEmail}}</h5>
         <p>{{blogDetails.blog.body}}</p>
@@ -73,7 +82,6 @@ export default {
         creator: this.$auth.userInfo,
       });
       this.commentContent = "";
-      refreshBlog();
     },
     refreshBlog() {
       this.$store.dispatch("getBlogDetails", this.$route.params.id);
@@ -88,4 +96,8 @@ export default {
 
 
 <style scoped>
+.size-img {
+  max-height: 300px;
+  max-width: auto;
+}
 </style>
