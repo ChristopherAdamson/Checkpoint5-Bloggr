@@ -49,7 +49,7 @@
       </quickModal>
     </div>
     <div class="row justify-content-center">
-      <Blogs v-for="blog in blogs" :blogData="blog" :key="blog.id" />
+      <Blogs v-for="blog in blogs" :blogData="blog" :profile="profile" :key="blog.id" />
     </div>
   </div>
 </template>
@@ -71,10 +71,14 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getAllBlogs");
+    this.$store.dispatch("loadProfile");
   },
   computed: {
     blogs() {
       return this.$store.state.blogs;
+    },
+    profile() {
+      return this.$store.state.profile;
     },
   },
   methods: {

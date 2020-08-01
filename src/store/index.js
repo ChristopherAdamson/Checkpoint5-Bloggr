@@ -15,6 +15,13 @@ export default new Vuex.Store({
   mutations: {
     setProfile(state, profile) {
       state.profile = profile;
+      window.localStorage.setItem("Profile", JSON.stringify(state.profile))
+    },
+    loadProfile(state) {
+      let storedProfile = JSON.parse(window.localStorage.getItem("Profile"))
+      if (storedProfile) {
+        state.profile = storedProfile
+      }
     },
     setBlogs(state, blogData) {
       state.blogs = blogData
@@ -81,6 +88,9 @@ export default new Vuex.Store({
         console.log(res.data);
         commit("setYourBlogs", res.data)
       } catch (error) { console.error(error) }
+    },
+    loadProfile({ commit }) {
+      commit("loadProfile")
     }
   },
 });

@@ -13,6 +13,11 @@
     <h4>{{blogData.title}}</h4>
     <h5>By: {{blogData.creatorEmail}}</h5>
     <button @click="blogDetailsPage" class="btn btn-info btn-sm float-right">Open Blog?</button>
+    <button
+      v-if="profile.email.length == blogData.creatorEmail.length"
+      @click="deleteBlog"
+      class="btn btn-danger btn-sm"
+    >Delete Blog?</button>
   </div>
 </template>
 
@@ -23,7 +28,8 @@ export default {
   data() {
     return {};
   },
-  props: ["blogData"],
+  props: ["blogData", "profile"],
+  mounted() {},
   computed: {},
   methods: {
     blogDetailsPage() {

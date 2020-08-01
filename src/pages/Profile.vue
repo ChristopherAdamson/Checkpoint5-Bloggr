@@ -21,6 +21,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getYourBlogs");
+    this.$store.dispatch("loadProfile");
   },
   computed: {
     profile() {
