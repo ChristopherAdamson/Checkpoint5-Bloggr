@@ -21,7 +21,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getYourBlogs");
-    this.$store.dispatch("loadProfile");
+    if (this.$auth.isAuthenticated) {
+      this.$store.dispatch("loadProfile");
+    } else {
+      this.$store.dispatch("loadFakeProfile");
+    }
   },
   computed: {
     profile() {

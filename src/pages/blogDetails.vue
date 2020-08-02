@@ -130,6 +130,25 @@ export default {
     },
     editBlog() {
       $("#three").modal("hide");
+      if (this.title && this.body) {
+        this.$store.dispatch("editBlog", {
+          title: this.title,
+          body: this.body,
+          blogId: this.$route.params.id,
+        });
+      } else if (this.title && !this.body) {
+        this.$store.dispatch("editBlog", {
+          title: this.title,
+          blogId: this.$route.params.id,
+        });
+      } else if (!this.title && this.body) {
+        this.$store.dispatch("editBlog", {
+          body: this.body,
+          blogId: this.$route.params.id,
+        });
+      }
+      this.title = null;
+      this.body = null;
     },
   },
   components: {

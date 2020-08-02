@@ -64,7 +64,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getAllBlogs");
-    this.$store.dispatch("loadProfile");
+    if (this.$auth.isAuthenticated) {
+      this.$store.dispatch("loadProfile");
+    } else {
+      this.$store.dispatch("loadFakeProfile");
+    }
   },
   computed: {
     blogs() {

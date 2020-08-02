@@ -23,6 +23,20 @@ export default new Vuex.Store({
         state.profile = storedProfile
       }
     },
+    loadFakeProfile(state) {
+      state.profile = {
+        __v: 0,
+        _id: "",
+        createdAt: "",
+        email: "",
+        id: "",
+        name: "",
+        picture: "",
+        subs: [],
+        updatedAt: ""
+      };
+      window.localStorage.setItem("Profile", JSON.stringify(state.profile))
+    },
     setBlogs(state, blogData) {
       state.blogs = blogData
     },
@@ -92,12 +106,22 @@ export default new Vuex.Store({
     loadProfile({ commit }) {
       commit("loadProfile")
     },
+    loadFakeProfile({ commit }) {
+      commit("loadFakeProfile")
+    },
     async deleteBlog({ commit, dispatch }, blogId) {
       try {
         let res = await api.delete("blogs/" + blogId)
         console.log(res);
         dispatch("getYourBlogs")
         dispatch("getAllBlogs")
+      } catch (error) { console.error(error) }
+    },
+    async editBlog({ commit, dispatch }, payload) {
+      try {
+        let res = await api.put("blogs/" + payload.blogId, payload)
+        console.log(res.data);
+        commit("setBlogDetails", res.data)
       } catch (error) { console.error(error) }
     }
   },
