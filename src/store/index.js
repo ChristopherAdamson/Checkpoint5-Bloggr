@@ -91,6 +91,14 @@ export default new Vuex.Store({
     },
     loadProfile({ commit }) {
       commit("loadProfile")
+    },
+    async deleteBlog({ commit, dispatch }, blogId) {
+      try {
+        let res = await api.delete("blogs/" + blogId)
+        console.log(res);
+        dispatch("getYourBlogs")
+        dispatch("getAllBlogs")
+      } catch (error) { console.error(error) }
     }
   },
 });

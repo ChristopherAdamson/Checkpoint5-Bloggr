@@ -5,7 +5,7 @@
     <p>{{ profile.email }}</p>
     <button @click="showBlogs = !showBlogs">Your Blogs</button>
     <div class="row" v-if="showBlogs">
-      <Blogs v-for="blog in blogs" :blogData="blog" :key="blog.id" />
+      <Blogs v-for="blog in blogs" :blogData="blog" :profile="profile" :key="blog.id" />
     </div>
   </div>
 </template>

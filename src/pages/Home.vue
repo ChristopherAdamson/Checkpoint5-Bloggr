@@ -25,13 +25,6 @@
               class="form-control"
               placeholder="Enter Body"
             />
-            <input
-              v-model="imgUrl"
-              type="text"
-              class="form-control"
-              placeholder="Enter image Url optional"
-            />
-
             <select v-modal="tags">
               <option>Tags?</option>
               <option value="gaming">Gaming</option>

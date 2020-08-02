@@ -12,12 +12,14 @@
     />
     <h4>{{blogData.title}}</h4>
     <h5>By: {{blogData.creatorEmail}}</h5>
-    <button @click="blogDetailsPage" class="btn btn-info btn-sm float-right">Open Blog?</button>
-    <button
-      v-if="profile.email.length == blogData.creatorEmail.length"
-      @click="deleteBlog"
-      class="btn btn-danger btn-sm"
-    >Delete Blog?</button>
+    <div class="row justify-content-around">
+      <button @click="blogDetailsPage" class="btn btn-info btn-sm float-right">Open Blog?</button>
+      <button
+        v-if="profile.email.length == blogData.creatorEmail.length"
+        @click="deleteBlog"
+        class="btn btn-danger btn-sm"
+      >Delete Blog?</button>
+    </div>
   </div>
 </template>
 
@@ -35,6 +37,9 @@ export default {
     blogDetailsPage() {
       // gives id of blog to store, moves to active blog page(need to create) that has a mounted that will populate that blog on the page from the ID given, also need to write route in router... you got this!
       this.$router.push({ name: "Blog", params: { id: this.blogData.id } });
+    },
+    deleteBlog() {
+      this.$store.dispatch("deleteBlog", this.blogData.id);
     },
   },
   components: {},
