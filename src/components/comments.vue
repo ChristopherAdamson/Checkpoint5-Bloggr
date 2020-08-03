@@ -51,7 +51,7 @@
     <p>{{commentData.body}}</p>
     <quickModal id="four" :key="4">
       <div slot="header">Edit your comment</div>
-      <form @submit="editComment" slot="body">
+      <form @submit.prevent="editComment" slot="body">
         <div class="form-group">
           <input
             v-model="commentContent"
@@ -84,10 +84,10 @@ export default {
       debugger;
       this.$store.dispatch("editComment", {
         body: this.commentContent,
-        commentId: this.commentData,
-        // blogId: this.commentData.blogId,
-        // creatorEmail: this.profile.name,
-        creatorEmail: this.commentData.creatorEmail,
+        commentId: this.commentData.id,
+        blogId: this.commentData.blogId,
+        creatorEmail: this.profile.name,
+        // creatorEmail: this.commentData.creatorEmail,
       });
       this.commentContent = null;
     },

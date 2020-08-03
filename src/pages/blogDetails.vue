@@ -15,7 +15,7 @@
           />
           <h1 class="text-center">{{blogDetails.blog.title}}</h1>
           <h5>By: {{blogDetails.blog.creatorEmail}}</h5>
-          <p class="text-left">{{blogDetails.blog.body}}</p>
+          <p>{{blogDetails.blog.body}}</p>
           <div class="row justify-content-center">
             <button
               @click="showComments = !showComments"
@@ -64,7 +64,7 @@
             >Post a Comment</button>
             <quickModal id="one" :key="1">
               <div slot="header">Create a Comment</div>
-              <form @submit="addComment" slot="body">
+              <form @submit.prevent="addComment" slot="body">
                 <div class="form-group">
                   <input
                     v-model="commentContent"
@@ -172,7 +172,7 @@ export default {
 
 <style scoped>
 .size-img {
-  max-height: 150px;
+  max-height: 100px;
   max-width: auto;
 }
 </style>

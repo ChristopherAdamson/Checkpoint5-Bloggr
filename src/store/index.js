@@ -44,7 +44,7 @@ export default new Vuex.Store({
       state.blogDetails = blogData
     },
     setNewComment(state, commentData) {
-      state.blogDetails.comments.unshift(commentData)
+      state.blogDetails.comments.push(commentData)
     },
     setNewBlog(state, blogData) {
       state.blogs.unshift(blogData)
@@ -135,9 +135,9 @@ export default new Vuex.Store({
     async editComment({ commit, dispatch }, payload) {
       try {
         debugger
-        let res = await api.put("comments/" + payload.commentId.id, payload)
+        let res = await api.put("comments/" + payload.commentId, payload)
         console.log(res.data);
-        dispatch("getBlogDetails", payload.commentId.blogId)
+        dispatch("getBlogDetails", payload.blogId)
       } catch (error) { console.error(error) }
     }
   },

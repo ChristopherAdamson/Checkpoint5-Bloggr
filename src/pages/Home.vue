@@ -11,7 +11,7 @@
       </div>
       <quickModal id="two" :key="2">
         <div slot="header">Create a Blog</div>
-        <form @submit="addBlog" slot="body">
+        <form @submit.prevent="addBlog" slot="body">
           <div class="form-group">
             <input
               v-model="title"
@@ -27,7 +27,7 @@
               class="form-control"
               placeholder="Enter Body"
             />
-            <select v-modal="tags">
+            <select v-model="tags">
               <option>Tags?</option>
               <option value="gaming">Gaming</option>
               <option value="books">Books</option>
