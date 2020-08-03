@@ -1,5 +1,5 @@
 <template>
-  <div class="comments col-8">
+  <div class="comments col-12 border px-5 my-2 rounded bg-light">
     <div v-if="blogData.creatorEmail.length == profile.email.length" class="dropdown">
       <button
         class="btn btn-secondary float-right btn-sm dropdown-toggle"
@@ -81,13 +81,18 @@ export default {
   methods: {
     editComment() {
       $("#four").modal("hide");
+      debugger;
       this.$store.dispatch("editComment", {
-        editedComment: this.commentContent,
-        commentId: this.commentData.id,
-        blogId: this.commentData.blogId,
+        body: this.commentContent,
+        commentId: this.commentData,
+        // blogId: this.commentData.blogId,
+        // creatorEmail: this.profile.name,
+        creatorEmail: this.commentData.creatorEmail,
       });
+      this.commentContent = null;
     },
     deleteComment() {
+      debugger;
       this.$store.dispatch("deleteComment", {
         commentId: this.commentData.id,
         blogId: this.blogData.id,

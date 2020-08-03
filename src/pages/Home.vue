@@ -1,12 +1,14 @@
 <template>
   <div class="home row justify-content-center">
     <div class="col-12">
-      <button
-        v-if="this.$auth.isAuthenticated"
-        data-toggle="modal"
-        data-target="#two"
-        class="btn"
-      >Post a Blog</button>
+      <div class="row justify-content-center">
+        <button
+          v-if="this.$auth.isAuthenticated"
+          data-toggle="modal"
+          data-target="#two"
+          class="btn btn-lg btn-primary text-center"
+        >Post a Blog</button>
+      </div>
       <quickModal id="two" :key="2">
         <div slot="header">Create a Blog</div>
         <form @submit="addBlog" slot="body">
@@ -72,7 +74,7 @@ export default {
   },
   computed: {
     blogs() {
-      return this.$store.state.blogs;
+      return this.$store.state.blogs.sort((a, b) => a.updatedAt - b.updatedAt);
     },
     profile() {
       return this.$store.state.profile;

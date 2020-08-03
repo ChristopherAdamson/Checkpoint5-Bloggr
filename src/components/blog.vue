@@ -12,6 +12,7 @@
     />
     <h4>{{blogData.title}}</h4>
     <h5>By: {{blogData.creatorEmail}}</h5>
+
     <div class="row justify-content-around">
       <button @click="blogDetailsPage" class="btn btn-info btn-sm float-right">Open Blog?</button>
       <button

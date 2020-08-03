@@ -2,35 +2,37 @@
   <div class="activeBlog">
     <div class="row justify-content-center">
       <div class="col-8">
-        <img
-          v-if="blogDetails.blog.creator"
-          class="img-fluid size-img icon float-right mt-2"
-          :src="blogDetails.blog.creator.picture"
-        />
-        <img
-          v-else-if="!blogDetails.blog.creator"
-          class="img-fluid size-img icon float-right mt-2"
-          src="https://cdn2.iconfinder.com/data/icons/ui-1/60/05-512.png"
-        />
-        <h1 class="text-center">{{blogDetails.blog.title}}</h1>
-        <h5>By: {{blogDetails.blog.creatorEmail}}</h5>
-        <p class="text-left">{{blogDetails.blog.body}}</p>
-        <div class="row justify-content-center">
-          <button
-            @click="showComments = !showComments"
-            class="btn btn-sm btn-primary mr-5"
-          >Comments: {{blogDetails.comments.length}}</button>
-          <button
-            v-if="profile.email.length == blogDetails.blog.creatorEmail.length"
-            @click="deleteBlog"
-            class="btn btn-danger btn-sm ml-5"
-          >Delete Blog?</button>
-          <button
-            v-if="profile.email.length == blogDetails.blog.creatorEmail.length"
-            data-toggle="modal"
-            data-target="#three"
-            class="btn btn-success btn-sm ml-5"
-          >Edit Blog?</button>
+        <div class="border bg-white border-black rounded">
+          <img
+            v-if="blogDetails.blog.creator"
+            class="img-fluid rounded size-img icon float-right mt-2"
+            :src="blogDetails.blog.creator.picture"
+          />
+          <img
+            v-else-if="!blogDetails.blog.creator"
+            class="img-fluid rounded size-img icon float-right mt-2"
+            src="https://cdn2.iconfinder.com/data/icons/ui-1/60/05-512.png"
+          />
+          <h1 class="text-center">{{blogDetails.blog.title}}</h1>
+          <h5>By: {{blogDetails.blog.creatorEmail}}</h5>
+          <p class="text-left">{{blogDetails.blog.body}}</p>
+          <div class="row justify-content-center">
+            <button
+              @click="showComments = !showComments"
+              class="btn btn-sm btn-primary mr-5"
+            >Comments: {{blogDetails.comments.length}}</button>
+            <button
+              v-if="profile.email.length == blogDetails.blog.creatorEmail.length"
+              @click="deleteBlog"
+              class="btn btn-danger btn-sm ml-5"
+            >Delete Blog?</button>
+            <button
+              v-if="profile.email.length == blogDetails.blog.creatorEmail.length"
+              data-toggle="modal"
+              data-target="#three"
+              class="btn btn-success btn-sm ml-5"
+            >Edit Blog?</button>
+          </div>
           <quickModal id="three" :key="3">
             <div slot="header">Edit your Blog</div>
             <form @submit="editBlog" slot="body">
@@ -52,13 +54,13 @@
             </form>
           </quickModal>
         </div>
-        <div v-if="showComments" class="row text-left">
+        <div v-if="showComments" class="row justify-content-center">
           <div class="col-12">
             <button
               v-if="this.$auth.isAuthenticated"
               data-toggle="modal"
               data-target="#one"
-              class="btn"
+              class="btn btn-success ml-5"
             >Post a Comment</button>
             <quickModal id="one" :key="1">
               <div slot="header">Create a Comment</div>
@@ -75,13 +77,15 @@
               </form>
             </quickModal>
           </div>
-          <Comments
-            v-for="comment in blogComments"
-            :blogData="blogDetails.blog"
-            :profile="profile"
-            :commentData="comment"
-            :key="comment.id"
-          />
+          <div>
+            <Comments
+              v-for="comment in blogComments"
+              :blogData="blogDetails.blog"
+              :profile="profile"
+              :commentData="comment"
+              :key="comment.id"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -168,8 +172,7 @@ export default {
 
 <style scoped>
 .size-img {
-  max-height: 300px;
+  max-height: 150px;
   max-width: auto;
-  min-height: 300px;
 }
 </style>

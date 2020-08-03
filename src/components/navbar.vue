@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light row">
+  <nav class="navbar navbar-expand-lg navbar-info bg-info row px-5">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="Vue logo" src="../assets/logo.png" style="transform: rotate(-90deg);width: 25px;" />
@@ -37,21 +37,7 @@
           <router-link class="nav-link" :to="{ name: 'Profile' }">Profile</router-link>
         </li>
       </ul>
-      <div class="row mr-auto ml-auto">
-        <div class="col-4 nav-item">
-          <router-link :to="{ name: 'Books' }" class="nav-link">Books</router-link>
-        </div>
-        <div class="col-4 nav-item">
-          <router-link :to="{ name: 'Cooking' }" class="nav-link">Cooking</router-link>
-        </div>
-        <div class="col-4 nav-item">
-          <router-link :to="{ name: 'Gaming' }" class="nav-link">Gaming</router-link>
-        </div>
-      </div>
-      <div class="mx-5">
-        <input type="text" placeholder="Search Tags?" />
-        <button class="btn btn-success">Search</button>
-      </div>
+
       <span class="navbar-text">
         <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
         <button class="btn btn-danger" @click="logout" v-else>logout</button>
