@@ -25,6 +25,8 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/_variables.scss";
+@import "./assets/_bootswatch.scss";
+
 @import "bootstrap";
 @import "./assets/_overrides.scss";
 </style>
