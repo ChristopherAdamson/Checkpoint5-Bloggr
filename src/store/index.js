@@ -122,6 +122,22 @@ export default new Vuex.Store({
         let res = await api.put("blogs/" + payload.blogId, payload)
         console.log(res.data);
         commit("setBlogDetails", res.data)
+        dispatch("getBlogDetails", payload.blogId)
+      } catch (error) { console.error(error) }
+    },
+    async deleteComment({ commit, dispatch }, payload) {
+      try {
+        let res = await api.delete("comments/" + payload.commentId)
+        console.log(res.data);
+        dispatch("getBlogDetails", payload.blogId)
+      } catch (error) { console.error(error) }
+    },
+    async editComment({ commit, dispatch }, payload) {
+      try {
+        debugger
+        let res = await api.put("comments/" + payload.commentId, payload.editedComment)
+        console.log(res.data);
+        commit("setBlogDetails", res.data)
       } catch (error) { console.error(error) }
     }
   },

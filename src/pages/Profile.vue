@@ -23,7 +23,7 @@ export default {
     this.$store.dispatch("getYourBlogs");
     if (this.$auth.isAuthenticated) {
       this.$store.dispatch("loadProfile");
-    } else {
+    } else if (!this.$auth.isAuthenticated) {
       this.$store.dispatch("loadFakeProfile");
     }
   },

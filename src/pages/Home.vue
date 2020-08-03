@@ -66,7 +66,7 @@ export default {
     this.$store.dispatch("getAllBlogs");
     if (this.$auth.isAuthenticated) {
       this.$store.dispatch("loadProfile");
-    } else {
+    } else if (!this.$auth.isAuthenticated) {
       this.$store.dispatch("loadFakeProfile");
     }
   },

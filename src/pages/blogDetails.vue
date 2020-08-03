@@ -75,7 +75,13 @@
               </form>
             </quickModal>
           </div>
-          <Comments v-for="comment in blogComments" :commentData="comment" :key="comment.id" />
+          <Comments
+            v-for="comment in blogComments"
+            :blogData="blogDetails.blog"
+            :profile="profile"
+            :commentData="comment"
+            :key="comment.id"
+          />
         </div>
       </div>
     </div>
@@ -126,7 +132,8 @@ export default {
       this.$store.dispatch("getBlogDetails", this.$route.params.id);
     },
     deleteBlog() {
-      this.$store.dispatch("deleteBlog", this.blogData.id);
+      this.$store.dispatch("deleteBlog", this.blogDetails.blog.id);
+      this.$router.push({ name: "Home" });
     },
     editBlog() {
       $("#three").modal("hide");
@@ -163,5 +170,6 @@ export default {
 .size-img {
   max-height: 300px;
   max-width: auto;
+  min-height: 300px;
 }
 </style>
